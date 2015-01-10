@@ -8,7 +8,7 @@ namespace XinGePushSDK.NET
 {
     public class Msg
     {
-        public Msg(uint message_type)
+        protected Msg(uint message_type)
         {
             this.message_type = message_type;
             

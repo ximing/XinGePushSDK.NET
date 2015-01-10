@@ -38,6 +38,12 @@ namespace XinGePushSDK.NET
             this.secretKey = secretKey;
         }
 
+        /// <summary>
+        /// 发起推送请求到信鸽并获得相应
+        /// </summary>
+        /// <param name="url">url</param>
+        /// <param name="parameters">字段</param>
+        /// <returns>返回值json反序列化后的类</returns>
         private Ret CallRestful(String url, IDictionary<string, string> parameters)
         {
             if (parameters == null)
@@ -73,9 +79,8 @@ namespace XinGePushSDK.NET
         /// </summary>
         /// <param name="DeviceToken"></param>
         /// <param name="msg"></param>
-        /// <param name="expire_time"></param>
-        /// <param name="send_time"></param>
-        /// <returns></returns>
+        /// <param name="environment"></param>
+        /// <returns>返回值json反序列化后的类</returns>
         public Ret PushToSingleDevice(string DeviceToken, Msg_IOS msg, uint environment)
         {
             if (msg == null)
@@ -99,12 +104,12 @@ namespace XinGePushSDK.NET
             return CallRestful(XinGeConfig.RESTAPI_PUSHSINGLEDEVICE, parameters);
         }
 
-        /// <summary>
+       /// <summary>
         /// 推送到 单个设备 安卓
-        /// </summary>
-        /// <param name="DeviceToken"></param>
-        /// <param name="msg"></param>
-        /// <returns></returns>
+       /// </summary>
+       /// <param name="DeviceToken"></param>
+       /// <param name="msg"></param>
+        /// <returns>返回值json反序列化后的类</returns>
         public Ret PushToSingleDevice(string DeviceToken, Msg_Android msg)
         {
             if (msg == null)
@@ -136,10 +141,10 @@ namespace XinGePushSDK.NET
         /// <summary>
         /// 推送到 单个用户 IOS
         /// </summary>
-        /// <param name="Account"></param>
-        /// <param name="msg"></param>
-        /// <param name="environment"></param>
-        /// <returns></returns>
+        /// <param name="Account">账号</param>
+        /// <param name="msg">信息</param>
+        /// <param name="environment">推送环境(开发or在线)</param>
+        /// <returns>返回值json反序列化后的类</returns>
         public Ret PushToAccount(string Account, Msg_IOS msg, uint environment)
         {
             if (msg == null)
@@ -169,7 +174,7 @@ namespace XinGePushSDK.NET
         /// </summary>
         /// <param name="Account"></param>
         /// <param name="msg"></param>
-        /// <returns></returns>
+        /// <returns>返回值json反序列化后的类</returns>
         public Ret PushToAccount(string Account, Msg_Android msg)
         {
             if (msg == null)
@@ -193,7 +198,12 @@ namespace XinGePushSDK.NET
             return CallRestful(XinGeConfig.RESTAPI_PUSHSINGLEACCOUNT, parameters);
         }
 
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="accountList"></param>
+        /// <param name="msg"></param>
+        /// <returns>返回值json反序列化后的类</returns>
         public Ret PushAccountList(List<String> accountList, Msg_Android msg)
         {
             if (msg == null)
@@ -220,6 +230,13 @@ namespace XinGePushSDK.NET
             return CallRestful(XinGeConfig.RESTAPI_PUSHACCOUNTLIST, parameters);
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="accountList"></param>
+        /// <param name="msg"></param>
+        /// <param name="environment"></param>
+        /// <returns>返回值json反序列化后的类</returns>
         public Ret PushAccountList(List<String> accountList, Msg_IOS msg, uint environment)
         {
             if (msg == null)
@@ -249,16 +266,12 @@ namespace XinGePushSDK.NET
 
 
 
+       
         /// <summary>
-        /// 推送到 所有用户 IOS
+        /// 推送到所有ios设备
         /// </summary>
         /// <param name="msg"></param>
-        /// <param name="expire_time"></param>
-        /// <param name="send_time"></param>
-        /// <param name="multi_pkg"></param>
-        /// <param name="loop_times"></param>
-        /// <param name="loop_interval"></param>
-        /// <returns></returns>
+        /// <returns>返回值json反序列化后的类</returns>
         public Ret PushAllDevice(Msg_Android msg)
         {
             if (msg == null)
@@ -285,6 +298,12 @@ namespace XinGePushSDK.NET
             return CallRestful(XinGeConfig.RESTAPI_PUSHALLDEVICE, parameters);
         }
 
+        /// <summary>
+        /// 推送到所有android设备
+        /// </summary>
+        /// <param name="msg"></param>
+        /// <param name="environment"></param>
+        /// <returns>返回值json反序列化后的类</returns>
         public Ret PushAllDevice(Msg_IOS msg, uint environment)
         {
             if (msg == null)
@@ -311,6 +330,13 @@ namespace XinGePushSDK.NET
             return CallRestful(XinGeConfig.RESTAPI_PUSHALLDEVICE, parameters);
         }
 
+        /// <summary>
+        /// 通过Tag推送到android设备
+        /// </summary>
+        /// <param name="tagList"></param>
+        /// <param name="tagOp"></param>
+        /// <param name="msg"></param>
+        /// <returns>返回值json反序列化后的类</returns>
         public Ret pushTags(List<String> tagList, String tagOp, Msg_Android msg)
         {
             if (tagList == null || tagList.Count == 0)
@@ -341,6 +367,14 @@ namespace XinGePushSDK.NET
             return CallRestful(XinGeConfig.RESTAPI_PUSHTAGS, parameters);
         }
 
+        /// <summary>
+        /// 通过tag推送到ios设备
+        /// </summary>
+        /// <param name="tagList"></param>
+        /// <param name="tagOp"></param>
+        /// <param name="msg"></param>
+        /// <param name="environment"></param>
+        /// <returns>返回值json反序列化后的类</returns>
         public Ret pushTags(List<String> tagList, String tagOp, Msg_IOS msg, uint environment)
         {
             if (tagList == null || tagList.Count == 0)
@@ -371,7 +405,11 @@ namespace XinGePushSDK.NET
             return CallRestful(XinGeConfig.RESTAPI_PUSHTAGS, parameters);
         }
 
-
+        /// <summary>
+        /// 查询群发消息发送状态
+        /// </summary>
+        /// <param name="pushIdList"></param>
+        /// <returns>返回值json反序列化后的类</returns>
         public Ret QueryPushStatus(List<String> pushIdList)
         {
             JObject jObject = new JObject();
@@ -383,12 +421,24 @@ namespace XinGePushSDK.NET
             parameters.Add("push_ids", jObject.ToString());
             return CallRestful(XinGeConfig.RESTAPI_QUERYPUSHSTATUS, parameters);
         }
+
+        /// <summary>
+        /// 查询应用覆盖的设备数
+        /// </summary>
+        /// <param name="pushIdList"></param>
+        /// <returns>返回值json反序列化后的类</returns>
         public Ret QueryDeviceCount(List<String> pushIdList)
         {
             IDictionary<string, string> parameters = new Dictionary<string, string>();
             return CallRestful(XinGeConfig.RESTAPI_QUERYDEVICECOUNT, parameters);
         }
 
+        /// <summary>
+        /// 查询应用的Tags
+        /// </summary>
+        /// <param name="start"></param>
+        /// <param name="limit"></param>
+        /// <returns>返回值json反序列化后的类</returns>
         public Ret QueryTags(int start, int limit)
         {
             IDictionary<string, string> parameters = new Dictionary<string, string>();
@@ -397,12 +447,21 @@ namespace XinGePushSDK.NET
             return CallRestful(XinGeConfig.RESTAPI_QUERYTAGS, parameters);
         }
 
+        /// <summary>
+        /// 查询应用的Tags
+        /// </summary>
+        /// <returns>返回值json反序列化后的类</returns>
         public Ret QueryTags()
         {
             return QueryTags(0, 100);
         }
 
 
+        /// <summary>
+        /// 取消尚未触发的定时群发任务
+        /// </summary>
+        /// <param name="pushId"></param>
+        /// <returns>返回值json反序列化后的类</returns>
         public Ret CancelTimingPush(String pushId)
         {
             IDictionary<string, string> parameters = new Dictionary<string, string>();
@@ -410,6 +469,11 @@ namespace XinGePushSDK.NET
             return CallRestful(XinGeConfig.RESTAPI_CANCELTIMINGPUSH, parameters);
         }
 
+        /// <summary>
+        /// 批量设置标签
+        /// </summary>
+        /// <param name="tagTokenPairs"></param>
+        /// <returns>返回值json反序列化后的类</returns>
         public Ret BatchSetTag(IDictionary<string, string> tagTokenPairs)
         {
 
@@ -434,6 +498,11 @@ namespace XinGePushSDK.NET
             return CallRestful(XinGeConfig.RESTAPI_BATCHSETTAG, parameters);
         }
 
+        /// <summary>
+        /// 批量删除标签
+        /// </summary>
+        /// <param name="tagTokenPairKeys"></param>
+        /// <returns>返回值json反序列化后的类</returns>
         public Ret BatchDelTag(List<string> tagTokenPairKeys)
         {
             IDictionary<string, string> parameters = new Dictionary<string, string>();
@@ -441,6 +510,12 @@ namespace XinGePushSDK.NET
 
             return CallRestful(XinGeConfig.RESTAPI_BATCHDELTAG, parameters);
         }
+
+        /// <summary>
+        /// 查询应用某token设置的标签
+        /// </summary>
+        /// <param name="deviceToken"></param>
+        /// <returns>返回值json反序列化后的类</returns>
         public Ret QueryTokenTags(String deviceToken)
         {
             IDictionary<string, string> parameters = new Dictionary<string, string>();
@@ -448,6 +523,11 @@ namespace XinGePushSDK.NET
             return CallRestful(XinGeConfig.RESTAPI_QUERYTOKENTAGS, parameters);
         }
 
+        /// <summary>
+        /// 查询应用某标签关联的设备数量
+        /// </summary>
+        /// <param name="tag"></param>
+        /// <returns>返回值json反序列化后的类</returns>
         public Ret QueryTagTokenNum(String tag)
         {
             IDictionary<string, string> parameters = new Dictionary<string, string>();
