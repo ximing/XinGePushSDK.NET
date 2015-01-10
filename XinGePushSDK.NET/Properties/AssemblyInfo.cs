@@ -6,7 +6,7 @@ using System.Runtime.InteropServices;
 // 特性集控制。更改这些特性值可修改
 // 与程序集关联的信息。
 [assembly: AssemblyTitle("XinGePushSDK.NET")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyDescription("腾讯信鸽.NET SDK")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
 [assembly: AssemblyProduct("XinGePushSDK.NET")]
