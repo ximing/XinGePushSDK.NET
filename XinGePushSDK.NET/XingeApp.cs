@@ -15,6 +15,14 @@ namespace XinGePushSDK.NET
         private string accessId;
         private string secretKey;
         public uint valid_time;
+
+        /// <summary>
+        /// 构造函数
+        /// </summary>
+        /// <param name="accessId">accessId</param>
+        /// <param name="secretKey">secretKey</param>
+        /// <param name="valid_time">配合timestamp确定请求的有效期，单位为秒，
+        /// 最大值为600。若不设置此参数或参数值非法，则按默认值600秒计算有效期</param>
         public XingeApp(string accessId, string secretKey, uint valid_time=600)
         {
             if (string.IsNullOrEmpty(accessId))
@@ -30,7 +38,7 @@ namespace XinGePushSDK.NET
             this.secretKey = secretKey;
         }
 
-        public Ret CallRestful(String url, IDictionary<string, string> parameters)
+        private Ret CallRestful(String url, IDictionary<string, string> parameters)
         {
             if (parameters == null)
             {
@@ -77,10 +85,6 @@ namespace XinGePushSDK.NET
             if (string.IsNullOrEmpty(DeviceToken))
             {
                 throw new ArgumentNullException("DeviceToken");
-            }
-            if (environment == null)
-            {
-                throw new ArgumentNullException("environment");
             }
             IDictionary<string, string> parameters = new Dictionary<string, string>();
             parameters.Add("device_token", DeviceToken);
@@ -146,10 +150,7 @@ namespace XinGePushSDK.NET
             {
                 throw new ArgumentNullException("Account");
             }
-            if (environment == null)
-            {
-                throw new ArgumentNullException("environment");
-            }
+            
             IDictionary<string, string> parameters = new Dictionary<string, string>();
             parameters.Add("account", Account);
             parameters.Add("send_time", msg.send_time);
@@ -283,15 +284,12 @@ namespace XinGePushSDK.NET
             }
             return CallRestful(XinGeConfig.RESTAPI_PUSHALLDEVICE, parameters);
         }
+
         public Ret PushAllDevice(Msg_IOS msg, uint environment)
         {
             if (msg == null)
             {
                 throw new ArgumentNullException("msg");
-            }
-            if (environment == null)
-            {
-                throw new ArgumentNullException("environment");
             }
             IDictionary<string, string> parameters = new Dictionary<string, string>();
             parameters.Add("message_type", msg.message_type.ToString());

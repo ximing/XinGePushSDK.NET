@@ -1,21 +1,38 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
+using XinGePushSDK.NET;
 
-namespace XinGePushSDK.NET.Utility
+namespace XinGeConsoleApplication
 {
-    public class SignUtility
+    class Program
     {
-        /// <summary>
-        /// 计算参数签名
-        /// </summary>
-        /// <param name="params">请求参数集，所有参数必须已转换为字符串类型</param>
-        /// <param name="secret">签名密钥</param>
-        /// <returns>签名</returns>
-        public static string GetSignature(IDictionary<string, string> parameters, string secret, string url)
+        static void Main(string[] args)
+        {
+            XingeApp xinge = new XingeApp("2100077407", "2164895a5ff3875b3533d667e6e5bf01");
+            Msg_Android ma = new Msg_Android_TouChuan("测试", XinGeConfig.message_type_touchuan)
+            {
+                content = "测试"
+            };
+            Console.WriteLine(ma.ToJson());
+            var respushall = xinge.PushAllDevice(ma);
+            Console.WriteLine(respushall.ret_code);
+            Console.WriteLine(respushall.err_msg);
+            Console.WriteLine(XinGeConfig.RESTAPI_BATCHSETTAG.Replace("http://", ""));
+            IDictionary<string, string> parameters = new Dictionary<string, string>();
+            parameters.Add("access_id", "123");
+            parameters.Add("timestamp", "1386691200");
+            parameters.Add("Param1", "Value1");
+            parameters.Add("Param2", "Value2");
+            Debug.WriteLine(getSignature(parameters, "abcde", "openapi.xg.qq.com/v2/push/single_device"));
+            Console.WriteLine(getSignature(parameters, "abcde", "openapi.xg.qq.com/v2/push/single_device"));
+        }
+
+        public static string getSignature(IDictionary<string, string> parameters, string secret, string url)
         {
             // 先将参数以其参数名的字典序升序进行排序
             IDictionary<string, string> sortedParams = new SortedDictionary<string, string>(parameters);
@@ -23,7 +40,7 @@ namespace XinGePushSDK.NET.Utility
 
             // 遍历排序后的字典，将所有参数按"key=value"格式拼接在一起
             StringBuilder basestring = new StringBuilder();
-            basestring.Append("POST").Append(url.Replace("http://",""));
+            basestring.Append("POST").Append(url);
             while (iterator.MoveNext())
             {
                 string key = iterator.Current.Key;
@@ -50,8 +67,8 @@ namespace XinGePushSDK.NET.Utility
                 }
                 result.Append(hex);
             }
+
             return result.ToString();
         }
-
     }
 }

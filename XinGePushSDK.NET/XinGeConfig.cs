@@ -40,5 +40,15 @@ namespace XinGePushSDK.NET
         /// IOS开发环境
         /// </summary>
         public const int IOSENV_DEV = 2;
+
+        /// <summary>
+        /// android 通知消息
+        /// </summary>
+        public const uint message_type_info = 1;
+
+        /// <summary>
+        /// android 透传消息
+        /// </summary>
+        public const uint message_type_touchuan = 2;
     }
 }

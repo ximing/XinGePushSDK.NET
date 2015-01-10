@@ -5,6 +5,10 @@ VisualStudioVersion = 12.0.31101.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XinGePushSDK.NET", "XinGePushSDK.NET\XinGePushSDK.NET.csproj", "{8B456175-C602-4362-8961-098880FC726A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XinGePushSDK.NETTests", "XinGePushSDK.NETTests\XinGePushSDK.NETTests.csproj", "{397F6135-EAEE-4F19-90F0-4F569DD7016E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XinGeConsoleApplication", "XinGeConsoleApplication\XinGeConsoleApplication.csproj", "{0081EAC6-DB32-468C-B361-83434E0EB487}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +19,14 @@ Global
 		{8B456175-C602-4362-8961-098880FC726A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8B456175-C602-4362-8961-098880FC726A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8B456175-C602-4362-8961-098880FC726A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{397F6135-EAEE-4F19-90F0-4F569DD7016E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{397F6135-EAEE-4F19-90F0-4F569DD7016E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{397F6135-EAEE-4F19-90F0-4F569DD7016E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{397F6135-EAEE-4F19-90F0-4F569DD7016E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0081EAC6-DB32-468C-B361-83434E0EB487}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0081EAC6-DB32-468C-B361-83434E0EB487}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0081EAC6-DB32-468C-B361-83434E0EB487}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0081EAC6-DB32-468C-B361-83434E0EB487}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
