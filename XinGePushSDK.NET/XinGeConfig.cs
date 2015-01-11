@@ -35,11 +35,11 @@ namespace XinGePushSDK.NET
         /// <summary>
         /// IOS生产环境
         /// </summary>
-        public const int IOSENV_PROD = 1;
+        public const uint IOSENV_PROD = 1;
         /// <summary>
         /// IOS开发环境
         /// </summary>
-        public const int IOSENV_DEV = 2;
+        public const uint IOSENV_DEV = 2;
 
         /// <summary>
         /// android 通知消息
