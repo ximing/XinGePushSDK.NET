@@ -13,7 +13,7 @@ namespace XinGeConsoleApplication
     {
         static void Main(string[] args)
         {
-            XingeApp xinge = new XingeApp("2100077407", "2164895a5ff3875b3533d667e6e5bf01");
+            XingeApp xinge = new XingeApp("accessId", "secretKey");
             Payload pl = new Payload("这是一个简单的alert");
             Msg_IOS mios = new Msg_IOS(pl);
             Msg_Android mandroid = new Msg_Android_TouChuan("测试", XinGeConfig.message_type_touchuan)
@@ -54,6 +54,8 @@ namespace XinGeConsoleApplication
             xinge.QueryTokenTags("deviceToken");
             //查询应用某标签关联的设备数量
             xinge.QueryTagTokenNum("tag");
+
+            
         }
 
     }
