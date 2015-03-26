@@ -26,7 +26,7 @@ namespace XinGePushSDK.NET
             }
             if (this.custom_content.Count>0)
             {
-                JArray array = new JArray(this.accept_time);
+                JArray array = new JArray(this.custom_content);
                 jobject.Add("custom_content", array);
             }
             return jobject.ToString();
