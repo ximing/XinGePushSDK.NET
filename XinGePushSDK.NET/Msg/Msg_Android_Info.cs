@@ -13,6 +13,10 @@ namespace XinGePushSDK.NET
         public Msg_Android_Info(string title, uint message_type)
             : base(title, message_type)
         {
+            this.ring = 1;
+            this.vibrate = 1;
+            this.lights = 1;
+            this.clearable = 1;
         }
         public int n_id { get; set; }
         public int builder_id { get; set; }
@@ -57,7 +61,7 @@ namespace XinGePushSDK.NET
             }
             if (this.custom_content.Count > 0)
             {
-                JArray array = new JArray(this.accept_time);
+                JArray array = new JArray(this.custom_content);
                 jobject.Add("custom_content", array);
             }
             jobject.Add("n_id", this.n_id);
